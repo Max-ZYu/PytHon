@@ -1,0 +1,731 @@
+Python3的内置函数：
+
+1. abs()
+计算绝对值
+2. all()
+全真才真，空字符串、0、false 都是假
+In [4]: all([1,2,'ff'])
+Out[4]: True
+
+In [5]: all([0,1])
+Out[5]: False
+
+In [6]: all(["", "sad" , 1])
+Out[6]: False
+1
+2
+3
+4
+5
+6
+7
+8
+3. any()
+
+里面有一个真就返回true
+
+4.ascii()
+
+把任何对象变成字符串
+
+In [7]: ascii(1)
+Out[7]: '1'
+
+In [8]: ascii([1,2,""])
+Out[8]: "[1, 2, '']"
+1
+2
+3
+4
+5
+5.bin()
+
+转化为二进制
+
+In [10]: bin(3)
+Out[10]: '0b11'
+1
+2
+6.bool()
+
+判断真假，0，false,”” 三者是假，其余是真。
+
+7.bytearray()
+
+class bytearray([source[, encoding[, errors]]]) ，
+
+In [5]: bytearray("中国",'utf-8')
+Out[5]: bytearray(b'\xe4\xb8\xad\xe5\x9b\xbd')
+
+In [6]: bytearray([1,23,5,213])
+Out[6]: bytearray(b'\x01\x17\x05\xd5')
+1
+2
+3
+4
+5
+8.bytes()
+
+类似bytearray(),内容不可变。和str之间的互换如下。
+
+# bytes object  
+ b = b"example"  
+
+ # str object  
+ s = "example"  
+
+ # str to bytes  
+ bytes(s, encoding = "utf8")  
+
+ # bytes to str  
+ str(b, encoding = "utf-8")  
+
+ # an alternative method  
+ # str to bytes  
+ str.encode(s)  
+
+ # bytes to str  
+ bytes.decode(b)  
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+9.callable()
+
+判断对象是否可以调用，python认为所有东西都是对象。
+
+In [11]: callable(a)
+Out[11]: False
+
+In [12]: def func():
+    ...:     pass
+    ...:
+
+In [13]: callable(func)
+Out[13]: True
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10.chr()
+
+int根据ascii对应法则变成char
+
+In [18]: chr(97)
+Out[18]: 'a'
+1
+2
+11.classmethod()
+
+类方法，不是实例方法。
+
+类方法隐含的参数为类本身 cls
+
+In [9]: class func():
+   ...:     age = 21
+   ...:     @classmethod
+   ...:     def grow(cls):
+   ...:         cls.age += 1
+   ...:         print(cls.age)
+   ...:
+   ...:
+
+In [10]: me =  func()
+
+In [11]: me.grow()
+22
+
+In [12]: me.grow()
+23
+
+In [13]: me.grow()
+24
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+12. compile()
+
+compile(source,filename,mode[…])
+
+把代码编译成python能运行的字节码
+
+这个函数用来编译一段字符串的源码，结果可以生成字节码或者AST（抽像语法树）
+
+字节码可以使用函数exec()来执行，而AST可以使用eval()来继续编译。
+
+参数source是一串字符串的源码，或者是AST对象数组。
+
+参数filename是读取字符串的文件对象，如果不是从文件里读取源码来编译，那么这里可以放一些用来标识这些代码的字符串。
+
+参数mode是用来指明那种表示的源码类型；
+
+exec类型，表示这是一个序列语句，可以运行.
+
+eval类型，表示这是一个单一的表达式语句，可以用来计算相应的值出来.
+
+single类型，表示这是一个单一语句，采用交互模式执行，在这种情况下，如果是一个表达式，一般会输出结果，而不是打印为None输出。
+
+当采用single或eval类型编译时，如果有多行代码，每行代码后面至少有一个换行符，
+
+str = "for i in range(0,10): print(i)"
+c = compile(str,'','exec')   # 编译为字节代码对象
+exec(c)
+1
+2
+3
+13.complex()
+
+复数
+
+14.delattr()
+
+删除属性，不能删除方法
+
+15.dir()
+
+展示对象的方法
+
+16.dict()
+
+字典类型
+
+17.divmode()
+
+取得商和余数
+
+18.enumerate()
+
+enumerate(iterable, start=0)
+
+能同时获取索引和元素。start指定索引开始的序号。返回一个元组组成的迭代器。
+
+In [11]: seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+
+In [12]: list(enumerate(seasons))
+Out[12]: [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
+1
+2
+3
+4
+19.eval()
+
+将字符串str当成有效的表达式来求值并返回计算结果
+
+20.exec()
+
+执行字符串或complie方法编译过的字符串，没有返回值
+
+21.filter()
+
+filter(function, iterable)
+
+过滤器，常用，要掌握。
+
+22.format()
+
+format(value[, format_spec])
+
+格式化，很有用，要掌握。
+
+23.float()
+
+讲一个字符串或整数转换为浮点数
+
+24.frozenset()
+
+frozenset([iterable])
+
+set和frozenset最本质的区别是前者是可变的，后者是不可变的。当集合对象会被改变时（例如删除，添加元素），只能使用set，
+
+25.getattr()
+
+getattr(object, name[, default])
+
+获取对象的属性
+
+26.globals()
+
+返回一个描述当前全局变量的字典
+
+27.hasattr()
+
+hasattr(object, name)
+
+判断对象是否含有某个属性或者方法
+
+In [19]: class func():
+    ...:     aa = 1
+    ...:     bb = 3
+    ...:     def __init__(self):
+    ...:         pass
+    ...:     def echo(self):
+    ...:         print("hello world !!")
+    ...:
+
+In [20]: hasattr(func,'aa')
+Out[20]: True
+
+In [21]: hasattr(func,'echo')
+Out[21]: True
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+28.hash()
+
+hash(object)
+
+感觉没什么用，没用过。
+
+29.help()
+
+帮助文档
+
+30.hex()
+
+转化为16进制
+
+31.id()
+
+获取内存地址
+
+32.input()
+
+常用的输入函数。
+
+33.int()
+
+转为int类型
+
+34.isinstance()
+
+isinstance(object, classinfo)
+
+In [2]: isinstance(a,str)
+Out[2]: True
+
+In [3]: isinstance(a,int)
+Out[3]: False
+
+In [4]: isinstance(a,(str,int,list))
+Out[4]: True
+1
+2
+3
+4
+5
+6
+7
+8
+35.issubclass()
+
+issubclass(class, classinfo)
+
+判断前者是不是后者的子类
+
+36.iter()
+
+iter(object[, sentinel])
+
+把对象或者集合之类的变成可迭代对象。
+
+iter(collection) -> iterator 
+iter(callable, sentinel) -> iterator
+
+37.len()
+
+计算长度
+
+38.list()
+
+列表
+
+39.locals()
+
+当前局部变量
+
+40.map()
+
+映射函数
+
+41.max()
+
+最大值
+
+42.min()
+
+最小值
+
+43.memoryview()
+
+memoryview(obj)
+
+直接去内存找目标。
+
+a = "hello world"
+b = memoryview(bytearray(a,encoding="utf-8"))
+c = memoryview(bytes(a,encoding="utf-8"))
+print(b[0],c[1:4])
+print(bytes(b[0:6]))
+print(str(b[0:5],encoding="utf-8"))
+1
+2
+3
+4
+5
+6
+44.next()
+
+next(iterator[, default])
+
+可迭代对象，下一个。
+
+45.object
+
+所有类的基类？
+
+46.oct(x)
+
+转化为八进制
+
+47.open()
+
+open(file, mode=’r’, buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
+
+Character	Meaning
+'r'	open for reading (default)
+'w'	open for writing, truncating the file first
+'x'	open for exclusive creation, failing if the file already exists
+'a'	open for writing, appending to the end of the file if it exists
+'b'	binary mode
+'t'	text mode (default)
+'+'	open a disk file for updating (reading and writing)
+'U'	universal newlines mode (deprecated)
+48.ord(c)
+
+字符转化ascii数字。
+
+49.pow()
+
+pow(x, y[, z])
+
+50.print()
+
+print(*objects, sep=’ ‘, end=’\n’, file=sys.stdout, flush=False)
+
+51.property()
+
+property(fget=None, fset=None, fdel=None, doc=None)
+
+好像现在没用了，2017.9.22 ， python3.5
+
+52.range()
+
+range(stop) range`(start, stop[, step])
+
+常用，不赘述
+
+53.repr(object)
+
+把对象变成字符串，和ascii很相似。
+
+repr是representation及描述的意思，不是对人的描述，而是对python机器的描述，也就是它会将某物返回一个它在python中的描述。说人话：repr(obj)告诉我们obj这个变量在背地里是什么样子，在背地里是怎么被python处理被python”玩弄”的。
+
+54.reversed(seq)
+
+逆序
+
+55.round()
+
+round(number[, ndigits])
+
+四舍五入
+
+56.set()
+
+set([iterable])
+
+集合
+
+57.setattr()
+
+setattr(object, name, value)
+
+58.slice()
+
+class slice(stop)*
+
+class slice(*start, stop[, step])
+
+一般这样用的
+
+>>> alist = ['123', 'abc', 'good', 'hello', 'nice']  #定义一个列表
+>>> alist1 = alist[:]     #[:]分号左边表示从第0未开始，分号右边表示最后一位结束。
+>>> alist1       #成功将alist列表拷贝给了alist1
+['123', 'abc', 'good', 'hello', 'nice']
+1
+2
+3
+4
+59.sorted()
+
+sorted(iterable, *, key=None, reverse=False)
+
+sorted([36,6,-12,9,-22]) 列表排序 
+[-22, -12, 6, 9, 36] 
+sorted([36,6,-12,9,-22],key=abs) 高阶函数，以绝对值大小排序 
+[6, 9, -12, -22, 36] 
+sorted([‘bob’, ‘about’, ‘Zoo’, ‘Credit’]) 字符串排序，按照ASCII的大小排序 
+[‘Credit’, ‘Zoo’, ‘about’, ‘bob’] 
+如果需要排序的是一个元组，则需要使用参数key，也就是关键字。 
+a = [(‘b’,2), (‘a’,1), (‘c’,0)] 
+list(sorted(a,key=lambda x:x[1])) 按照元组第二个元素排序 
+[(‘c’, 0), (‘a’, 1), (‘b’, 2)] 
+list(sorted(a,key=lambda x:x[0])) 按照元组第一个元素排序 
+[(‘a’, 1), (‘b’, 2), (‘c’, 0)] 
+sorted([‘bob’, ‘about’, ‘Zoo’, ‘Credit’],key=str.lower) 忽略大小写排序 
+[‘about’, ‘bob’, ‘Credit’, ‘Zoo’] 
+sorted([‘bob’, ‘about’, ‘Zoo’, ‘Credit’],key=str.lower,reverse=True) 反向排序 
+[‘Zoo’, ‘Credit’, ‘bob’, ‘about’]
+60.staticmethod()
+
+staticmethod(function)
+
+def check(num):
+    return(isinstance(num, int))
+
+
+class func():
+    def __init__(self, x):
+        self.x = x
+
+    def get(self):
+        if check(self.x):
+            print(self.x)
+        else:
+            print('error')
+
+    def reset(self, num):
+        if check(num):
+            self.x = num
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+class func():
+    def __init__(self, x):
+        self.x = x
+
+    @staticmethod
+    def check(num):
+        return(isinstance(num, int))
+
+    def get(self):
+        if self.check(self.x):
+            print(self.x)
+        else:
+            print('error')
+
+    def reset(self, num):
+        if self.check(num):
+            self.x = num
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+61.str()
+
+str(object=”“) class str(object=b”, encoding=’utf-8’, errors=’strict’)
+
+简单常用的字符串类型，不赘述
+
+62.sum()
+
+sum(iterable[, start])
+
+依次相加，比如sum([1,2,3]),就等于1+2+3
+
+a = range(1, 11)
+b = range(1, 10)
+c = sum([item for item in a if item in b])
+print c
+1
+2
+3
+4
+63.super()
+
+super([type[, object-or-type]])
+
+主要用来继承
+
+class FooParent(object):
+    def __init__(self):
+        self.parent = 'I\'m the parent.'
+        print 'Parent'
+
+    def bar(self,message):
+        print message,'from Parent'
+
+class FooChild(FooParent):
+    def __init__(self):
+        super(FooChild,self).__init__()
+        print 'Child'
+
+    def bar(self,message):
+        super(FooChild, self).bar(message)
+        print 'Child bar fuction'
+        print self.parent
+
+if __name__ == '__main__':
+    fooChild = FooChild()
+    fooChild.bar('HelloWorld')
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+64.tuple()
+
+tuple([iterable])
+
+变成元组
+
+65.type()
+
+class type(object) class type(*name, bases, dict)
+
+查询元素类型
+
+66.vars()
+
+vars([object])
+
+有参数时候类似dir() ,比如 vars(list) dir(list)
+
+没有参数类似locals().
+
+67.zip()
+
+zip(*iterables)
+
+list_1 = [1,2,3]
+list_2 = ['a','b','c']
+s = zip(list_1,list_2)
+print(list(s))
+
+运行结果：
+
+[(1, 'a'), (2, 'b'), (3, 'c')]
+1
+2
+3
+4
+5
+6
+7
+8
+a = [(1,),(2,),(3,)]
+r = zip(*a)
+print(list(r))
+运行结果：
+[(1, 2, 3)]
+print(list(r)[0])
+运行结果：
+(1, 2, 3)
+1
+2
+3
+4
+5
+6
+7
+8
+ 
