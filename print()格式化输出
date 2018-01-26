@@ -1,0 +1,71 @@
+print()格式化输出
+左对齐，居中，右对齐分别使用^、<、>，后面带宽度
+:号后面带填充的字符，只能是一个字符，不指定的话默认是用空格填充
+
+例如：
+a=['copyright',
+   'credits',
+   'asd',]
+b=['20170564',
+'20170563',
+'20170562',]
+
+for i in range(3):
+    #print('%-20s%-15s'%(a[i],b[i]))
+    print('{0:<20} {1:*>12}'.format(a[i],b[i]))
+==================== RESTART: C:/Users/张瑜ing/Desktop/1.py ====================
+copyright            ****20170564
+credits              ****20170563
+asd                  ****20170562
+>>> 
+
+或者
+a=['copyright',
+   'credits',
+   'asd',]
+b=['20170564',
+'20170563',
+'20170562',]
+
+for i in range(3):
+    print('%-20s%-15s'%(a[i],b[i]))
+    #print('{0:<20} {1:*>12}'.format(a[i],b[i]))
+==================== RESTART: C:/Users/张瑜ing/Desktop/1.py ====================
+copyright           20170564       
+credits             20170563       
+asd                 20170562       
+>>> 
+
+然而，使用中文时却无法正常对齐
+原因是这样：在print中，函数为了实现字符串对齐，会在未达到指定长度的字符串末尾添上空格补齐。
+但是，问题在这里，它会填入ASCII码为20的space，也就是半角空格。它的长度等于每个字母或数字的宽度，但远比汉字的宽度小，所以导致补足后的字符串长度仍然不同。
+
+解决方案：
+重写一个格式对齐函数，函数中判断字符串是否是中文字符串，有的话则添加全角空格补齐，否则添加半角空格补齐。
+def myAlign(string, length=0):  
+    if length == 0:  
+        return string  
+    slen = len(string)  
+    re = string  
+    if isinstance(string, str):  
+        placeholder = ' '  
+    else:  
+        placeholder = u'　'  
+    while slen < length:  
+        re += placeholder  
+        slen += 1  
+    return re  
+s1 = u'我是一个长句子，是的很长的句子。'  
+s2 =u'我是短句子'  
+  
+  
+print myAlign(s1, 20) + myAlign(s2, 10)  
+print myAlign(s2, 20) + myAlign(s1, 10)  
+
+
+后面部分的原因解释，来自CSDN网站
+http://blog.csdn.net/sbdxxcjh/article/details/38051573
+感谢
+#author: Song Bo, Eagle, ZJU  
+#email: sbo@zju.edu.cn  
+
