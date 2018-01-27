@@ -41,7 +41,7 @@ asd                 20170562
 但是，问题在这里，它会填入ASCII码为20的space，也就是半角空格。它的长度等于每个字母或数字的宽度，但远比汉字的宽度小，所以导致补足后的字符串长度仍然不同。
 
 解决方案：
-重写一个格式对齐函数，函数中判断字符串是否是中文字符串，有的话则添加全角空格补齐，否则添加半角空格补齐。
+需要重写一个格式对齐函数，函数中判断字符串是否是中文字符串，有的话则添加全角空格补齐，否则添加半角空格补齐。
 def myAlign(string, length=0):  
     if length == 0:  
         return string  
@@ -57,13 +57,13 @@ def myAlign(string, length=0):
     return re  
 s1 = u'我是一个长句子，是的很长的句子。'  
 s2 =u'我是短句子'  
-  
-  
+    
 print myAlign(s1, 20) + myAlign(s2, 10)  
 print myAlign(s2, 20) + myAlign(s1, 10)  
 
+经过调试，他的这段代码也是错误的，无法得到 正确结果
 
-后面部分的原因解释，来自CSDN网站
+ 后面部分的原因解释，来自CSDN网站
 http://blog.csdn.net/sbdxxcjh/article/details/38051573
 感谢
 #author: Song Bo, Eagle, ZJU  
