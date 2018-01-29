@@ -61,7 +61,7 @@ s2 =u'我是短句子'
 print myAlign(s1, 20) + myAlign(s2, 10)  
 print myAlign(s2, 20) + myAlign(s1, 10)  
 
-经过调试，他的这段代码也是错误的，无法得到 正确结果
+经过调试，无法得到 正确结果
 
  后面部分的原因解释，来自CSDN网站
 http://blog.csdn.net/sbdxxcjh/article/details/38051573
